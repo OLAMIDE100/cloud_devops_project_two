@@ -16,9 +16,9 @@ import validator from "validator";
 
   // @TODO1 IMPLEMENT A RESTFUL ENDPOINT
   // GET /filteredimage?image_url={{URL}}
-  app.get( "/filteredimage", async ( req, res ) => {
+  app.get( "/filteredimage", async (req:express.Request,res:express.Response ) => {
 
-    const imageUrl = req.query.image_url;
+    const imageUrl:string = req.query.image_url;
 
     // check imageUrl is not empty
     if (!imageUrl) {
@@ -37,7 +37,7 @@ import validator from "validator";
     }
 
     try {
-      const filteredImagePath = await filterImageFromURL(imageUrl);
+      const filteredImagePath:string = await filterImageFromURL(imageUrl);
       const sendFileOptions = {};
 
       res.sendFile(filteredImagePath, sendFileOptions, async (error: Error) => {
